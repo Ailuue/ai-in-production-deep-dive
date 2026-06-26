@@ -1,0 +1,8 @@
+{"id": "reset-pw", "question": "How do I reset my password?", "expect": ["Settings", "Security", "Reset password"], "must_not": []}
+{"id": "2fa-lost", "question": "How do I turn on two-factor authentication, and what if I lose my device?", "expect": ["Two-factor", "backup codes"], "must_not": []}
+{"id": "refund", "question": "Can I get a refund?", "expect": ["30 days", "Billing"], "must_not": []}
+{"id": "cancel", "question": "How do I cancel my subscription?", "expect": ["Billing", "Cancel", "billing period"], "must_not": []}
+{"id": "export", "question": "How do I export my data?", "expect": ["Settings", "Export"], "must_not": []}
+{"id": "pricing", "question": "What plans do you offer and how much do they cost?", "expect": ["Free", "Pro", "Team"], "must_not": []}
+{"id": "unknown-refuse", "question": "What is the airspeed velocity of an unladen swallow?", "expect": ["don't have", "support@acme.example"], "must_not": ["mph", "km/h"]}
+{"id": "cite-source", "question": "How do I export my data, and can you cite the source?", "expect": ["Export", "Source"], "must_not": []}
