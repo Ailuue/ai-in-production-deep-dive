@@ -168,6 +168,44 @@ summary. That's one operable service, offline, no key.
 
 ---
 
+## Going further — three more production concerns **(offline)**
+
+**Predict (semantic caching, `09`).** "How do I reset my password?" is cached. A new
+query "How can I reset my password if I forgot it?" arrives. Exact-match cache: hit or
+miss? Semantic cache: hit or miss? What's the danger of setting the threshold too low?
+
+<details><summary>▸ Answer</summary>
+
+Exact-match **misses** (different bytes); the semantic cache **hits** (high similarity)
+and saves a call. Too low a threshold and you serve a **similar-but-wrong** cached
+answer to a genuinely different question — so you tune it, and keep exact-match for
+things that must never be confused.
+</details>
+
+**Recall (fallback/routing, `10`).** Name the two ways a *second* model helps, and how
+each differs from the retries in Section 5.
+
+<details><summary>▸ Answer</summary>
+
+**Failover** — when the primary is down even after retries, serve from a backup
+(cheaper model or canned answer) instead of erroring. **Cost routing** — send easy
+questions to a cheap model, hard ones to the expensive model, to cut the bill. Retries
+re-call the *same* model; these reach for a *different* one.
+</details>
+
+**Recall (rate limiting & feedback, `11`).** What does a per-tenant token bucket
+protect against, and why is a thumbs-down the most valuable signal you can log?
+
+<details><summary>▸ Answer</summary>
+
+It stops any one client/tenant from **starving a shared, costly backend** (fairness,
+cost control, multi-tenancy) — one tenant's burst is capped without affecting others.
+A 👎 is a **labelled example of something your system got wrong** — exactly the
+regression test (evals dive) and fine-tuning data that makes the next version better.
+</details>
+
+---
+
 **Done?** You've operated one app end to end. The "Where to go next" section of
 the README maps each from-scratch layer here to its industrial counterpart — same
 interfaces, bigger machinery.
